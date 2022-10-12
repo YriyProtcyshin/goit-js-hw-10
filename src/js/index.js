@@ -45,10 +45,6 @@ function onInput(e) {
   }
 }
 
-function checkData(data) {
-  console.log(data.length);
-}
-
 function renderList(countriesList) {
   divElemenetRef.innerHTML = countryListTpl(countriesList);
 }
