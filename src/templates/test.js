@@ -1,19 +1,20 @@
-let test = `{{#each this}}
+let templateList = `{{#each this}}
   <li>
     <img src='{{flags.png}}' alt='{{name.common}}' width='50' />
-    {{name.common}}
-
-    <ul class='detail'>
-      <li>Capital {{capital}}</li>
-      <li>Population {{population}}</li>
-      <li>Languages
-        {{#each languages}}
-          {{this}},
-        {{/each}}
-
-      </li>
-    </ul>
+    {{name.common}}    
   </li>
 {{/each}}`;
 
-export { test };
+let countryInfo = `
+<ul class='detail'>
+    <li>Capital {{capital}}</li>
+    <li>Population {{population}}</li>
+    <li>Languages
+        {{#each languages}}
+          {{this}},
+        {{/each}}
+    </li>
+</ul>
+`;
+
+export { templateList, countryInfo };

@@ -1,20 +1,23 @@
 import '../css/styles.css';
-import { fetchCountries } from '../js/fetchCountries';
-
+import { fetchCountries } from './fetchCountries';
 import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
-// import countryListTpl from '../templates/countryList.hbs';
-
-import { test } from '../templates/test';
+import { templateList, countryInfo } from '../templates/templates.js';
 
 const Handlebars = require('handlebars');
-const template = Handlebars.compile(test);
+
+import Handlebars from 'handlebars';
+const elemenetListTmp = Handlebars.compile(templateList);
+const countryInfoTmp = Handlebars.compile(countryInfo);
 
 const DEBOUNCE_DELAY = 300;
+const options = {
+  position: 'center-top',
+};
 
 // ссылка на div для вставки списка
 const divElemenetRef = document.querySelector('.country-list');
+const countryInfoRef = document.querySelector('.country-info');
 
 // ссылка на поле ввода запроса
 const inputForm = document.querySelector('#search-box');
@@ -40,11 +43,10 @@ function onInput(e) {
         console.log('Not Found');
         throw new Error();
       }
+      cleanHtmlList();
       renderingHtml(json);
     })
     .catch(json => {
-      console.log('Сработал Catch');
-      console.log(json);
       errorMessage();
     });
 }
@@ -52,15 +54,10 @@ function onInput(e) {
 // =========================================================================
 
 function renderingHtml(json) {
-  console.log(json);
-
-  divElemenetRef.innerHTML = `${json.length}`;
   if (json.length === 1) {
-    console.log(json.length);
+    countryInfoRef.innerHTML = countryInfoTmp(json[0]);
   } else if (json.length < 10) {
-    console.log(json.length);
-
-    divElemenetRef.innerHTML = template(json);
+    divElemenetRef.innerHTML = elemenetListTmp(json);
   } else {
     infoMessage();
   }
@@ -68,51 +65,17 @@ function renderingHtml(json) {
 
 function cleanHtmlList() {
   divElemenetRef.innerHTML = '';
+  countryInfoRef.innerHTML = '';
 }
 
 function errorMessage() {
-  Notify.failure('Oops, there is no country with that name');
+  Notify.failure('Oops, there is no country with that name', options);
   divElemenetRef.innerHTML = '';
 }
 
 function infoMessage() {
-  Notify.info('Too many matches found. Please enter a more specific name.');
+  Notify.info(
+    'Too many matches found. Please enter a more specific name.',
+    options
+  );
 }
-
-// function onInput(e) {
-//   const searchQuery = e.target.value.trim();
-
-//   if (searchQuery) {
-//     const response = fetchCountries(searchQuery);
-
-//     response
-//       .then(json => {
-//         if (json.message != 'Not Found') {
-//           if (json.length < 10) {
-//             console.log(json);
-//             if (json.length === 1) {
-//               divElemenetRef.classList.toggle('active');
-//             }
-//             renderList(json);
-//           } else {
-//             Notify.info(
-//               '"Too many matches found. Please enter a more specific name.'
-//             );
-//           }
-//         } else {
-//           throw new Error();
-//         }
-//       })
-//       .catch(() => {
-//         divElemenetRef.innerHTML = '';
-//         Notify.failure('Oops, there is no country with that name');
-//       });
-//   } else {
-//     Notify.failure('Oops, there is no country with that name');
-//     divElemenetRef.innerHTML = '';
-//   }
-// }
-
-// function renderList(countriesList) {
-//   divElemenetRef.innerHTML = countryListTpl(countriesList);
-// }
