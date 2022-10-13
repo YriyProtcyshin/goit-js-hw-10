@@ -99,3 +99,17 @@ Pages, в ветку `gh-pages`, каждый раз когда обновляе
 3. Если все шаги прошли успешно, собранная продакшн версия файлов проекта
    отправляется в ветку `gh-pages`. В противном случае, в логе выполнения
    скрипта будет указано в чем проблема.
+
+![handlebars](./assets/handlebars_logo.png)
+
+[Ссылка на плагин]
+(https://www.npmjs.com/package/parcel-plugin-handlebars-precompile)
+
+Для корректрой работы плагина на github ружно дополнительно установить еще один
+плагин [Ссылка на плагин](https://www.npmjs.com/package/parcel-transformer-hbs)
+
+И внести изменения в .parcelrc :
+
+"transformers": { "\*.hbs": ["parcel-transformer-hbs"] }
+
+![transformers](./assets/plagin-transform.JPG)
