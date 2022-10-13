@@ -104,10 +104,9 @@ Pages, в ветку `gh-pages`, каждый раз когда обновляе
 
 ![handlebars](./assets/handlebars_logo.png)
 
-[Ссылка на плагин]
-(https://www.npmjs.com/package/parcel-plugin-handlebars-precompile)
+[Ссылка на плагин](https://www.npmjs.com/package/parcel-plugin-handlebars-precompile)
 
-Для корректрой работы плагина на github ружно дополнительно установить еще один
+Для корректрой работы плагина на github нужно дополнительно установить еще один
 плагин [Ссылка на плагин](https://www.npmjs.com/package/parcel-transformer-hbs)
 
 И внести изменения в .parcelrc :

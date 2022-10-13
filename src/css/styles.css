@@ -18,10 +18,3 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
-.detail {
-  display: none;
-}
-
-.country-list.active .detail {
-  display: block;
-}
