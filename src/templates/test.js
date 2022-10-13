@@ -1,4 +1,4 @@
-export default test = `{{#each this}}
+let test = `{{#each this}}
   <li>
     <img src='{{flags.png}}' alt='{{name.common}}' width='50' />
     {{name.common}}
@@ -15,3 +15,5 @@ export default test = `{{#each this}}
     </ul>
   </li>
 {{/each}}`;
+
+export { test };

@@ -6,7 +6,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 // import countryListTpl from '../templates/countryList.hbs';
 
-import test from '../templates/test.js';
+import { test } from '../templates/test';
 
 const Handlebars = require('handlebars');
 const template = Handlebars.compile(test);
