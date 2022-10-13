@@ -1,8 +1,15 @@
 import '../css/styles.css';
 import { fetchCountries } from '../js/fetchCountries';
-import countryListTpl from '../templates/countryList.hbs';
+
 import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
+// import countryListTpl from '../templates/countryList.hbs';
+
+import test from '../templates/test.js';
+
+const Handlebars = require('handlebars');
+const template = Handlebars.compile(test);
 
 const DEBOUNCE_DELAY = 300;
 
@@ -53,11 +60,7 @@ function renderingHtml(json) {
   } else if (json.length < 10) {
     console.log(json.length);
 
-    try {
-      divElemenetRef.innerHTML = countryListTpl(json);
-    } catch (error) {
-      console.log(error);
-    }
+    divElemenetRef.innerHTML = template(json);
   } else {
     infoMessage();
   }
