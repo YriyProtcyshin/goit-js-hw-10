@@ -2,13 +2,17 @@ import '../css/styles.css';
 import { fetchCountries } from './fetchCountries';
 import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { templateList, countryInfo } from '../templates/templates.js';
 
-const Handlebars = require('handlebars');
+import countryListTmp from '../templates/countryList.hbs';
+import countryInfoTmp from '../templates/countryInfo.hbs';
 
-import Handlebars from 'handlebars';
-const elemenetListTmp = Handlebars.compile(templateList);
-const countryInfoTmp = Handlebars.compile(countryInfo);
+// import { templateList, countryInfo } from '../templates/templates.js';
+
+// const Handlebars = require('handlebars');
+
+// import Handlebars from 'handlebars';
+// const elemenetListTmp = Handlebars.compile(templateList);
+// const countryInfoTmp = Handlebars.compile(countryInfo);
 
 const DEBOUNCE_DELAY = 300;
 const options = {
@@ -57,7 +61,8 @@ function renderingHtml(json) {
   if (json.length === 1) {
     countryInfoRef.innerHTML = countryInfoTmp(json[0]);
   } else if (json.length < 10) {
-    divElemenetRef.innerHTML = elemenetListTmp(json);
+    divElemenetRef.innerHTML = countryListTmp(json);
+    // divElemenetRef.innerHTML = elemenetListTmp(json);
   } else {
     infoMessage();
   }

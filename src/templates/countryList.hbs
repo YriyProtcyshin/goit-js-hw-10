@@ -1,18 +1,12 @@
-{{#each this}}
-  <li>
-    <img src='{{flags.png}}' alt='{{name.common}}' width='50' />
-    {{name.common}}
-
-    <ul class='detail'>
-      <li>Capital {{capital}}</li>
-      <li>Population {{population}}</li>
-      <li>Languages
-        {{#each languages}}
-          {{this}},
-        {{/each}}
-
-      </li>
-    </ul>
-
+`{{#each this}}
+  <li class='country-list__item'>
+    <img
+      src='{{flags.png}}'
+      alt='{{name.common}}'
+      width='75px'
+      height='50px'
+      class='country-list__img rounded'
+    />
+    <h2>{{name.common}}</h2>
   </li>
-{{/each}}
+{{/each}}`
