@@ -20,6 +20,9 @@ body {
 
   padding-top: 30px;
   padding-left: 30px;
+
+  width: 1200px !important;
+  margin: 0 auto !important;
 }
 
 #search-box {

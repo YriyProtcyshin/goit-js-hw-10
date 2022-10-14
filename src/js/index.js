@@ -1,25 +1,21 @@
 import '../css/styles.css';
-import { fetchCountries } from './fetchCountries';
 import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
+import { fetchCountries } from './fetchCountries';
+// импорт шаблонов
 import countryListTmp from '../templates/countryList.hbs';
 import countryInfoTmp from '../templates/countryInfo.hbs';
 
-// import { templateList, countryInfo } from '../templates/templates.js';
-
-// const Handlebars = require('handlebars');
-
-// import Handlebars from 'handlebars';
-// const elemenetListTmp = Handlebars.compile(templateList);
-// const countryInfoTmp = Handlebars.compile(countryInfo);
-
+// задержка вызова функции про вводе текста
 const DEBOUNCE_DELAY = 300;
+
+// options для Notify
 const options = {
   position: 'center-top',
 };
 
-// ссылка на div для вставки списка
+// ссылка на  HTML элементы
 const divElemenetRef = document.querySelector('.country-list');
 const countryInfoRef = document.querySelector('.country-info');
 
@@ -62,7 +58,6 @@ function renderingHtml(json) {
     countryInfoRef.innerHTML = countryInfoTmp(json[0]);
   } else if (json.length < 10) {
     divElemenetRef.innerHTML = countryListTmp(json);
-    // divElemenetRef.innerHTML = elemenetListTmp(json);
   } else {
     infoMessage();
   }
