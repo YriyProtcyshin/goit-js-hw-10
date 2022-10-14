@@ -40,7 +40,6 @@ function onInput(e) {
     .then(json => {
       // Обработка ошибки 404
       if (json.message === 'Not Found') {
-        console.log('Not Found');
         throw new Error();
       }
       cleanHtmlList();
@@ -55,7 +54,13 @@ function onInput(e) {
 
 function renderingHtml(json) {
   if (json.length === 1) {
-    countryInfoRef.innerHTML = countryInfoTmp(json[0]);
+    // получить список языков и преобразовать в строку
+    const arrLang = Object.values(json[0].languages).join(', ');
+
+    countryInfoRef.innerHTML = countryInfoTmp({
+      country: json[0],
+      lang: arrLang,
+    });
   } else if (json.length < 10) {
     divElemenetRef.innerHTML = countryListTmp(json);
   } else {
